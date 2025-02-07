@@ -131,7 +131,8 @@ function addRuntimeVal(arg) {
 
     options._DEST_ROOT = path.resolve(options.dest);
     if (options._isDev) {
-        options._DEST_ROOT = options._SERVER_ROOT;
+        // options._DEST_ROOT = options._SERVER_ROOT;
+        options._DEST_ROOT = path.join(options._CWD, options.dest, options._PRD_PREFIX);
     }
     if (options._isPrd) {
         options._DEST_ROOT = path.join(options._CWD, options.dest, options._PRD_PREFIX);

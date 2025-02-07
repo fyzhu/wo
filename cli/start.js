@@ -53,7 +53,19 @@ function watch(config, callback){
         ignored: config.watchIgnore,
         ignoreInitial: true
     }).on('all', handleWatchEvent(config, function (path) {
-        build(config, path);
+        const {_arg} = config
+        build(config, path, () => {
+            const {cmd} = _arg
+            if (!cmd) return
+            const { exec } = require('child_process');
+            exec(cmd, (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`执行命令出错: ${error}`);
+                    return;
+                }
+                console.log(stdout);
+            });
+        });
     }));
 
     chokidar.watch(config.templateRefs, {
@@ -116,8 +128,8 @@ module.exports = function(config, input, callback) {
     callback = callback || function() {};
 
     async.series([
-        cb => build(config, input, cb),
-        cb => server(config, cb),
+        // cb => build(config, input, cb),
+        // cb => server(config, cb),
         cb => watch(config, cb)
     ], function (err) {
         if (err) {
