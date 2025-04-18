@@ -115,8 +115,9 @@ function addRuntimeVal(arg) {
 
     // project_name/version_number
     options._PRD_PREFIX = path.join(options.name, options._VERSION);
+    var date = new Date()
     if (arg.mode == 'prod') {
-        options._PRD_PREFIX += '-prod'
+        options._PRD_PREFIX += '-prod' + (date.getMonth() + 1) + date.getDate()
     }
     // Debug mode
     options._isDebug = options._arg.debug;
