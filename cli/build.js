@@ -92,13 +92,13 @@ function getGlobFiles(glob, config) {
 }
 
 function build(config, input, callback) {
-    if (config._showLog) {
-        console.time('uglify');
-        console.time('sass');
-        console.time('imagemin');
-        console.time('nunjucks');
-        console.time('copy');
-    }
+    // if (config._showLog) {
+    //     console.time('uglify');
+    //     console.time('sass');
+    //     console.time('imagemin');
+    //     console.time('nunjucks');
+    //     console.time('copy');
+    // }
 
     if (utils.isFile(input)) {
         if (!utils.isNormalFile(input)) {
